@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './App.css';
+import styles from './App.module.css';
 
 function App() {
 	const [lembretes, setLembretes] = useState({});
@@ -88,10 +88,10 @@ function App() {
 	});
 
 	return (
-		<div className="container">
+		<div className={styles.container}>
 			<h1>Novo lembrete</h1>
-			<form onSubmit={handleAdicionarLembrete} className="form-lembrete">
-				<div className="form-grupo">
+			<form onSubmit={handleAdicionarLembrete} className={styles['form-lembrete']}>
+				<div className={styles['form-grupo']}>
 					<label htmlFor="nome">Nome</label>
 					<input
 						id="nome"
@@ -101,7 +101,7 @@ function App() {
 						onChange={(e) => setNome(e.target.value)}
 					/>
 				</div>
-				<div className="form-grupo">
+				<div className={styles['form-grupo']}>
 					<label htmlFor="data">Data</label>
 					<input
 						id="data"
@@ -113,19 +113,19 @@ function App() {
 				</div>
 				<button type="submit">Criar</button>
 			</form>
-			{erro && <p className="mensagem-erro">{erro}</p>}
+			{erro && <p className={styles['mensagem-erro']}>{erro}</p>}
 
-			<div className="lista-container">
+			<div className={styles['lista-container']}>
 				<h2>Lista de lembretes</h2>
 				{datasOrdenadas.length > 0 ? (
 					datasOrdenadas.map(data => (
-						<div key={data} className="grupo-data">
+						<div key={data} className={styles['grupo-data']}>
 							<h3>{data}</h3>
-							<ul className="lista-lembretes">
+							<ul className={styles['lista-lembretes']}>
 								{lembretes[data].map(lembrete => (
 									<li key={lembrete.id}>
 										<span>{lembrete.nome}</span>
-										<button onClick={() => handleDeletarLembrete(data, lembrete.id)} className="botao-deletar">
+										<button onClick={() => handleDeletarLembrete(data, lembrete.id)} className={styles['botao-deletar']}>
 											&#10060;
 										</button>
 									</li>
